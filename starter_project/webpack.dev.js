@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -13,18 +13,18 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: 'babel-loader',
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-        }
-        ]
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+        ],
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
-            filename: "./index.html",
+            template: './src/client/views/index.html',
+            filename: './index.html',
         }),
         new CleanWebpackPlugin({
             // Simulate the removal of files
@@ -33,11 +33,14 @@ module.exports = {
             verbose: true,
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false
-        })
+            protectWebpackAssets: false,
+        }),
     ],
     devServer: {
+        static: './dist',
         port: 3000,
-        allowedHosts: 'all'
-    }
-}
+        allowedHosts: 'all',
+        open: true, // Automatically open the browser on start
+    },
+    
+};
